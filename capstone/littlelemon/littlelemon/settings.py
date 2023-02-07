@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
-import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -77,8 +76,15 @@ WSGI_APPLICATION = 'littlelemon.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'LittleLemon',
+        'HOST':'127.0.0.1',
+        'PORT':'3306',
+        'USER':'root',
+        'PASSWORD':'password',
+        
+    'OPTIONS':{'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"},
+
     }
 }
 
@@ -119,7 +125,7 @@ USE_TZ = True
 
 STATIC_URL = 'restaurant/static/'
 STATICFILES_DIR = [
-    os.path.join(BASE_DIR,'restaurant/static'),
+    'restaurant/static',
 ]
 
 # Default primary key field type
